@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T17:05:23.138129463Z[GMT]")
 
 
-public class NewDocumentType   {
+public class NewDocumentType extends DocumentType{
   @JsonProperty("name")
   private String name = null;
 

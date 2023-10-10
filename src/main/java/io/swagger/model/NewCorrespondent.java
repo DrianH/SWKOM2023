@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T17:05:23.138129463Z[GMT]")
 
 
-public class NewCorrespondent   {
+public class NewCorrespondent extends Correspondent{
   @JsonProperty("name")
   private String name = null;
 
