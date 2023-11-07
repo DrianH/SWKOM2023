@@ -1,4 +1,5 @@
 version: "1.0"
+
 services:
   frontend:
     image: paperless:nginx
@@ -6,10 +7,36 @@ services:
       dockerfile: ui/Dockerfile
     ports:
       - "8080:80"
+
   backend:
     image: paperless:openjdk
     build:
       dockerfile: Dockerfile
     ports:
       - "8088:8088"
+    depends_on:
+      - rabbitmq
+      - db
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_DEFAULT_USER: "drianh"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq1!"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  db:
+    image: postgis/postgis
+    environment:
+      POSTGRES_USER: "drianh"
+      POSTGRES_PASSWORD: "postgres1!"
+      POSTGRES_DB: "paperless"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
